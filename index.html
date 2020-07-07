@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <h1>C++ Language MCQ</h1>
+        <h3 id="score" style="color:green"></h3>
+        <hr>
+
+        <label for="phone" class="col-lg-2 control-label">Phone Number</label>
+        <input id="phone" type="number" placeholder="Please Submit Your Phone Number" required>
+
+        <br><h3>Questions</h3></br>
+
+        <label for="q1">1: Which one of the following is not a fundamental data type in C++?</label>
+        <p>Ans : </p>
+        <select id="q1" required >
+          <option value=1>float</option>
+          <option value=2>int</option>
+          <option value=3>string</option>
+          <option value=4>wchar_t</option>
+        </select>
+        <br><br><br>
+
+        <label for="q2">2. Which classes allow primitive types to be accessed as objects?</label>
+        <p>Ans : </p>
+        <select id="q2" required>
+          <option value=1>Storage </option>
+          <option value=2>Virtual</option>
+          <option value=3>Friend</option>
+          <option value=4>Wrapper</option>
+        </select>
+        <br><br><br>
+
+        <label for="q3">3. Which of the following is not a standard exception built in C++.</label>
+        <p>Ans : </p>
+        <select id="q3" required>
+          <option value=1>std::bad_creat</option>
+          <option value=2>std::bad_alloc</option>
+          <option value=3>std::bad_cast</option>
+          <option value=4>std::bad_typeid</option>
+        </select>
+        <br><br><br>
+
+        <label for="q4">4. What does STL stand for?</label>
+        <p>Ans : </p>
+        <select id="q4" required>
+          <option value=1>Simple Template Library</option>
+          <option value=2>Standard Template Library</option>
+          <option value=3>Simple Table Library</option>
+          <option value=4>SQL Template Library</option>
+        </select>
+        <br><br><br>
+
+        <label for="q5">5. Which looping process checks the test condition at the end of the loop?</label>
+        <p>Ans : </p>
+        <select id="q5" required>
+          <option value=1>for</option>
+          <option value=2>while</option>
+          <option value=3>do-while</option>
+          <option value=4>None of the above</option>
+        </select>
+        <br><br><br>
+
+        <label for="q6">6. *ptr++ is equivalenet to:</label>
+        <p>Ans : </p>
+        <select id="q6" required>
+          <option value=1>ptr++</option>
+          <option value=2>*ptr</option>
+          <option value=3>++*ptr</option>
+          <option value=4>None of the above</option>
+        </select>
+        <br><br><br>
+
+        <label for="q7">7. The statement i++; is equivalent to</label>
+        <p>Ans : </p>
+        <select id="q7" required>
+          <option value=1>i = i + 1</option>
+          <option value=2>i = i + 2</option>
+          <option value=3>i = i - 1</option>
+          <option value=4>i = i + i</option>
+        </select>
+        <br><br><br>
+
+        <label for="q8">8. Which of the following functions below can be used Allocate space for array in memory?</label>
+        <p>Ans : </p>
+        <select id="q8" required>
+          <option value=1>Alloc()</option>
+          <option value=2>Malloc()</option>
+          <option value=3>Realloc()</option>
+          <option value=4>both A and B</option>
+        </select>
+        <br><br><br>
+
+        <label for="q9">9. Value of a in a = (b = 5, b + 5); is </label>
+        <p>Ans : </p>
+        <select id="q9" required>
+          <option value=1>Junk</option>
+          <option value=2>Syntax error</option>
+          <option value=3>5</option>
+          <option value=4>10</option>
+        </select>
+        <br><br><br>
+
+        <label for="q10">10. Minimum number of temporary variable needed to swap the contents of 2 variables is:</label>
+        <p>Ans : </p>
+        <select id="q10" required>
+          <option value=1>0</option>
+          <option value=2>1</option>
+          <option value=3>2</option>
+          <option value=4>3</option>
+        </select>
+        <br><br><br>
+
+        <button id="button">Check Score</button><br><br>
+
+        <br><br><hr><br><br>
+
+          <h2>Get All Accounts</h2>
+        <button id="getAllAccounts">Get All Accounts</button>
+        <p id="allAccounts"></p><br><br>
+
+        <h2>Get Marks By Account</h2>
+        <label for="account">Enter Account Number</label>
+          <input type="number" id="account" name="" value="">
+      <button id="getMarksByAccount">Get Marks By Account</button>
+      <p id="marksByAccount"></p>
+
+
+
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script>
+       // Our future code here..
+       if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.WebsocketProvider("ws://localhost:8545"));
+        }
+
+
+        web3.eth.getAccounts(function(err, accounts) {
+          testcontract.defaultAccount =  accounts[0];
+        });
+
+
+
+
+        var testcontract = new web3.eth.Contract([
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "score",
+				"type": "uint256"
+			}
+		],
+		"name": "scoreInfo",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getAllPhone",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_phone",
+				"type": "uint256"
+			}
+		],
+		"name": "getMarksByPhone",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "UserAnswers",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_phone",
+				"type": "uint256"
+			}
+		],
+		"name": "setAnswers",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+],'deployment_address_in_remix_ethereum');
+
+      ethereum.enable() ;
+
+      console.log(testcontract);
+
+      var scoreEvent = testcontract.events.scoreInfo(function(error,result){
+            if(!error){
+                $("#score").html('Your Score is : '+(result.returnValues.score));
+            }
+            else{
+                console.log(error);
+            }
+      });
+
+
+      $('#getAllAccounts').click(function(){
+        testcontract.methods.getAllPhone().call().then((res)=>{
+          if(res.length> 0){
+            sentence = '';
+            res.forEach(element => sentence = sentence + '<br>'+element);
+            $('#allAccounts').html(sentence)
+          }
+          else{
+            $('#allAccounts').html("There Are No Entries Or Some Error occured");
+          }
+        });
+      });
+
+      $('#getMarksByAccount').click(function(){
+        var phone = document.getElementById('account').value;
+        testcontract.methods.getMarksByPhone(phone).call().then((res)=>{
+          $('#marksByAccount').html("Score of "+phone+" is "+res );
+        });
+      });
+
+
+
+
+      $("#button").click(function() {
+            var answers = []
+            for(i =1 ; i < 11 ; i++ ){
+              answers.push(document.getElementById('q'+i).value);
+            }
+
+            var phone = document.getElementById('phone').value;
+
+
+            testcontract.methods.setAnswers(answers,phone).send({from:testcontract.defaultAccount},function (error,result) {
+              if(error){
+                console.log(error)
+                $("#score").html("Some error occured");
+              }
+              else{
+                $("#score").html(result);
+              }
+              console.log(result);
+            }).then((res)=>{
+              console.log(res);
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
